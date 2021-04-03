@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :categories, except: [:destroy]
   end
 
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
 
 
 
