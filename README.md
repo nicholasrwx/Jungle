@@ -1,36 +1,25 @@
 # Jungle
 
-A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
+  A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
 ## Setup Notes
 - If there is a dependency that needs to be upgraded and the installation fails, run `bundle update dependency_name`.
   It will upgrade the dependency and continue installing the rest where it left off. Keep doing this for every dependency it fails on.
-  Simply running `bundle update` will introduce breaking changes. The `Puma` Gem usually needs to be updated when going through the install.
-  Possibly `rmagick` as-well.
+  Simply running `bundle update` will introduce breaking changes.
+  The `Puma` Gem usually needs to be updated when going through the install and possibly `rmagick` as-well.
 - Publishable Key and Secret Key are the only vars in .env that need a value. They do not need to be in quotes.
 - You need to enable strip testing capability in stripe account for test cards to work
-- I believe you need to login as the super user postgres `sudo su - postgres` to login to the database and setup another user.
-  Once this is done the created user should be able to login no problems as a regular user.
-  Its a good idea to test the connection as a regular user afterwards.
-- Ruby 2.3.5, rails, and some dependencies make use of openssl 1.1.1 so Ubuntu 18.04 is necessary unless you want to mess around with dependency issues.
-- Ruby 2.3.5 works well if you use the right linux version, openssl1.1, and update packages on an only whats necessary basis.
-- If you already have git setup on your system, wsl should be able to use it no problem.
-
-## Additional Dependencies:
-- make
-- pacman
-- brew
-- gcc
-- libssl-dev
-- gpg
-- gnupg2 ( used for rvm gpg keys )
-- build-essential
-- libmagickwand-dev libmagickcore-dev ( required for gem - rmagick 5.5.0 )
-- node 14.21.3 ( used by rails when running rake command )
-- wsl - Ubuntu 18.04 ( for openssl 1.1 required by ruby, rails, and some deps )
+- You need to `sudo su - postgres` to login to the database and create a role/user.
+  Once this is done the created db user should be able to login from a regular linux user session.
+  It's a good idea to test the connection as a regular user afterwards.
+- Ruby 2.3.5, rails, and some dependencies make use of openssl 1.1, therefore Ubuntu 18.04 is necessary
+  unless you want to mess around with dependency issues.
+- Ruby 2.3.5 works well if you use the right linux version, openssl 1.1, and update packages on an `only whats necessary` basis.
+- If you already have git setup on your system then wsl should be able to use it no problem.
+- Ruby on Rails doesn't run all too well on windows. There are dependency issues, so it is best to install wsl then install ruby and rails in this linux environment.
 
 ## Running RoR on Windows 11
-Install windows subsystem for linux:
+*Install windows subsystem for linux:*
 - `wsl --install -d Ubuntu-18.04` // matches the project as we need openssl 1.1 for ruby 2.3.5
 - Restart system
 - open powershell and run `wsl`
@@ -38,13 +27,10 @@ Install windows subsystem for linux:
 - `sudo apt-get upgrade`
 - openssl version ( ensure openssl is version 1.1 )
 
-Removing windows subsystem for linux:
+*Removing windows subsystem for linux:*
 - `wsl --unregister <distro_name>` 					        // generally ubuntu
 - `C:\Users\<YourUsername>\AppData\Local\Packages` 	// find distro folder and delete. This can contain a virtual hard drive for the system.
 - `Restart Windows`
-
-Ruby on Rails doesn't run all too well on windows.
-There are dependency issues, so it is best to install wsl then install ruby and rails in this linux environment.
 
 ## Ruby on Rails Setup:
 - Install RVM using guide here - [rvm.io](https://rvm.io/)
@@ -81,13 +67,24 @@ There are dependency issues, so it is best to install wsl then install ruby and 
 8. Run `bin/rails s -b 0.0.0.0` to start the server
 
 ## Stripe Testing
-
-Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
-
-More information in their docs: <https://stripe.com/docs/testing#cards>
+- Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
+- More information in their docs: <https://stripe.com/docs/testing#cards>
 
 ## Dependencies
-
+* Ruby 2.3.5 and 3.x
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 * PostgreSQL 9.x
 * Stripe
+
+## Additional Dependencies:
+- wsl - Ubuntu 18.04 ( for openssl 1.1 required by ruby, rails, and some deps )
+- node 14.21.3 ( used by rails when running rake command )
+- make
+- pacman
+- brew
+- gcc
+- libssl-dev
+- gpg
+- build-essential
+- gnupg2 ( used for rvm gpg keys )
+- libmagickwand-dev libmagickcore-dev ( required for gem - rmagick 5.5.0 )
